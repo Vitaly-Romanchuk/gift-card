@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seovillage Gift Card</title>
+    <style>
+        body {
+            background-color: #0f1a0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden; /* Чтобы не было полос прокрутки */
+        }
+
+        .card-container {
+            /* Устанавливаем ширину в 75% от ширины экрана */
+            width: 75vw; 
+            /* Сохраняем пропорции пластиковой карты (примерно 1.6 к 1) */
+            aspect-ratio: 1.58 / 1; 
+            max-height: 80vh; /* Чтобы не вылезала за пределы по высоте */
+            perspective: 2000px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 3vw; /* Скругление теперь тоже зависит от размера */
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        }
+
+        .card-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .hint {
+            color: #c9a54d;
+            margin-top: 2vh;
+            font-size: 1.5vw; /* Размер текста тоже подстраивается */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card" id="giftCard">
+            <div class="card-side front">
+                <img src="front.png" alt="Front">
+            </div>
+            <div class="card-side back">
+                <img src="back.png" alt="Back">
+            </div>
+        </div>
+    </div>
+
+    <div class="hint">Нажми на карту, чтобы перевернуть</div>
+
+    <script>
+        const card = document.getElementById('giftCard');
+        card.addEventListener('click', function() {
+            card.classList.toggle('is-flipped');
+        });
+    </script>
+
+</body>
+</html>
